@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Repository {
 
-    final String DB_URL = "jdbc:sqlite:C:\\Users\\ADMIN\\OneDrive\\Desktop\\JAVA\\Delivery Example\\JavaDeliveryExample\\deliveryData.db";
+    final String DB_URL = "jdbc:sqlite:deliveryData.db";
     final String USER = "";
     final String PASS = "";
     static ArrayList<Customer> customers = new ArrayList<Customer>();
