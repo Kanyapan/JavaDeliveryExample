@@ -12,14 +12,24 @@ public class Customer {
     Restaurant restaurant = new Restaurant();
     Scanner scan = new Scanner(System.in);
     private String name;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private Address address;
-    private int status;
-    private DataBaseAll dataBaseAll;
+
 
     public Customer() {
     }
 
-    public Customer(String name, Address address) {
+    public Customer(int id,String name, Address address) {
+        this.id=id;
         this.name = name;
         this.address = address;
     }
@@ -40,16 +50,16 @@ public class Customer {
         this.name = name;
     }
 
-    public void mainMenu(String customerName) {
+    public void mainMenu(int customerID) {
         int menuSelect = 0;
         String orderIsComingStatus = "No Order";
-        if (getCustomerByName(customerName).ridersIsComing.size() > 0) {
-            orderIsComingStatus = getCustomerByName(customerName).ridersIsComing.get(0).getName() + " is coming";
+        if (getCustomerByID(customerID).ridersIsComing.size() > 0) {
+            orderIsComingStatus = getCustomerByID(customerID).ridersIsComing.get(0).getName() + " is coming";
         } else {
             System.out.println("NoOrder");
         }
         System.out.println("================================");
-        System.out.println("Hello " + getCustomerByName(customerName).getName() + " What would you like to do?");
+        System.out.println("Hello " + getCustomerByID(customerID).getName() + " What would you like to do?");
         System.out.println("1. Order");
         System.out.println("2. Order is coming :" + orderIsComingStatus);
         System.out.println("3. History");
@@ -58,13 +68,13 @@ public class Customer {
 
         switch (menuSelect) {
             case 1:
-                menuOrder(customerName);
+                menuOrder(customerID);
                 break;
             case 2:
-                menuOrderIsComing(customerName);
+                menuOrderIsComing(customerID);
                 break;
             case 3:
-                menuHistory(customerName);
+                menuHistory(customerID);
                 break;
 
         }
@@ -75,13 +85,13 @@ public class Customer {
         System.out.println("================================");
         showCustomer();
         System.out.print("Fill your name : ");
-        String customerName = scan.next();
-        mainMenu(customerName);
+        int customerID = scan.nextInt();
+        mainMenu(customerID);
 
 
     }
 
-    public void menuOrder(String customerName) {
+    public void menuOrder(int customerID) {
         System.out.println("================================");
         int i = 1;
         restaurant.showRestaurant();
@@ -103,53 +113,52 @@ public class Customer {
             rider.getRiderByPosition().setStatus("You have new order");
             rider.getRiderByPosition().setStatusNewOrder("Pick up at " + restaurant.getRestaurantByIndex(menuSelect).getName() + " Address :" + restaurant.getRestaurantByIndex(menuSelect).getAddress().getName() + " Distance = " + rider.getRiderByPosition().getDistance() + " m");
             rider.getRiderByPosition().cuisinesConfirmed.add(restaurant.getRestaurantByIndex(menuSelect).getCuisineByIndex(cuisineSelect));
-            rider.getRiderByPosition().customersWhoOrdered.add(getCustomerByName(customerName));
+            rider.getRiderByPosition().customersWhoOrdered.add(getCustomerByID(customerID));
         }
 
     }
 
 
-    public void menuOrderIsComing(String customerName) {
-        String whoRiderIsComing ="" ;
-        if (getCustomerByName(customerName).ridersIsComing.size()!=0){
-            whoRiderIsComing = getCustomerByName(customerName).ridersIsComing.get(0).getName();
-        }
-        else {
+    public void menuOrderIsComing(int customerID) {
+        String whoRiderIsComing = "";
+        if (getCustomerByID(customerID).ridersIsComing.size() != 0) {
+            whoRiderIsComing = getCustomerByID(customerID).ridersIsComing.get(0).getName();
+        } else {
             System.out.println("");
         }
         System.out.println("================================");
-        System.out.println("Order is coming by :"+whoRiderIsComing);
+        System.out.println("Order is coming by :" + whoRiderIsComing);
 
 
     }
 
-    public void menuHistory(String customerName) {
-        if (getCustomerByName(customerName).restaurantsHistory.size()>0) {
-            for (int i = 0; i < getCustomerByName(customerName).restaurantsHistory.size(); i++) {
-                System.out.println(i + 1 + ". " + getCustomerByName(customerName).restaurantsHistory.get(i).getName() + " : " + getCustomerByName(customerName).cuisinesHistory.get(i).getFood() + " by " + getCustomerByName(customerName).ridersHistory.get(i).getName());
+    public void menuHistory(int customerID) {
+        if (getCustomerByID(customerID).restaurantsHistory.size() > 0) {
+            for (int i = 0; i < getCustomerByID(customerID).restaurantsHistory.size(); i++) {
+                System.out.println(i + 1 + ". " + getCustomerByID(customerID).restaurantsHistory.get(i).getName() + " : " + getCustomerByID(customerID).cuisinesHistory.get(i).getFood() + " by " + getCustomerByID(customerID).ridersHistory.get(i).getName());
             }
-        }
-        else {
+        } else {
             System.out.println("No History");
         }
 
     }
 
 
-    public Customer getCustomerByName(String customerName) {
+    public Customer getCustomerByID(int customerID) {
 
-        for (Customer customer : dataBaseAll.customers) {
-            if (customer.getName().equals(customerName)) {
+        for (Customer customer : Repository.customers) {
+            if (customer.getId()==customerID) {
                 return customer;
             }
         }
         return null;
     }
 
+
     public void showCustomer() {
 
         int i = 1;
-        for (Customer customer : dataBaseAll.customers) {
+        for (Customer customer : Repository.customers) {
 
             System.out.println(i + ". " + customer.getName());
             i++;

@@ -18,7 +18,7 @@ public class Restaurant {
     }
 
     private String status;
-    private DataBaseAll dataBaseAll = new DataBaseAll();
+    private Repository repository = new Repository();
 
     public Restaurant() {
 
@@ -84,7 +84,7 @@ public class Restaurant {
 
     public void showRestaurant() {
         int i = 1;
-        for (Restaurant restaurant : dataBaseAll.restaurants) {
+        for (Restaurant restaurant : repository.restaurants) {
 
             System.out.println(i + ". " + restaurant.getName() + ":" + restaurant.getAddress().getName()+" "+restaurant.getStatus());
             i++;
@@ -92,7 +92,7 @@ public class Restaurant {
     }
 
     public Restaurant getRestaurantByIndex(int index) {
-        return dataBaseAll.restaurants.get(index - 1);
+        return repository.restaurants.get(index - 1);
 
     }
 

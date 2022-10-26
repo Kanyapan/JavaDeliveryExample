@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    static DataBaseAll dataBaseAll = new DataBaseAll();
+    static Repository repository = new Repository();
     static Customer customer = new Customer();
     static Rider rider = new Rider();
 
@@ -11,9 +11,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        dataBaseAll.initialCustomer();
-        dataBaseAll.initialRider();
-        dataBaseAll.initialRestaurant();
+        repository.initialCustomer();
+        repository.initialRider();
+        repository.initialRestaurant();
 
         do {
             mainMenu();

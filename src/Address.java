@@ -3,6 +3,9 @@ public class Address {
     private int locationX;
     private int locationY;
 
+    public Address() {
+    }
+
     public Address(String name, int locationX, int locationY) {
         this.name = name;
         this.locationX = locationX;
