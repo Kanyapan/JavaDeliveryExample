@@ -13,6 +13,16 @@ public class Customer {
     Scanner scan = new Scanner(System.in);
     private String name;
     private int id;
+    private Address address;
+
+    public Customer() {
+    }
+
+    public Customer(int id, String name, Address address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
 
     public int getId() {
         return id;
@@ -20,18 +30,6 @@ public class Customer {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    private Address address;
-
-
-    public Customer() {
-    }
-
-    public Customer(int id,String name, Address address) {
-        this.id=id;
-        this.name = name;
-        this.address = address;
     }
 
     public Address getAddress() {
@@ -67,16 +65,9 @@ public class Customer {
         menuSelect = scan.nextInt();
 
         switch (menuSelect) {
-            case 1:
-                menuOrder(customerID);
-                break;
-            case 2:
-                menuOrderIsComing(customerID);
-                break;
-            case 3:
-                menuHistory(customerID);
-                break;
-
+            case 1 -> menuOrder(customerID);
+            case 2 -> menuOrderIsComing(customerID);
+            case 3 -> menuHistory(customerID);
         }
 
     }
@@ -84,7 +75,7 @@ public class Customer {
     public void mainMenuLogin() {
         System.out.println("================================");
         showCustomer();
-        System.out.print("Fill your name : ");
+        System.out.print("Fill your ID : ");
         int customerID = scan.nextInt();
         mainMenu(customerID);
 
@@ -147,7 +138,7 @@ public class Customer {
     public Customer getCustomerByID(int customerID) {
 
         for (Customer customer : Repository.customers) {
-            if (customer.getId()==customerID) {
+            if (customer.getId() == customerID) {
                 return customer;
             }
         }

@@ -193,7 +193,7 @@ public class Rider {
     }
 
     public void menuDelivering(int riderID) {
-        System.out.print("Set Distance :");
+        System.out.print("Set Distance (Must be 0 m) :");
         int distanceSet = scan.nextInt();
         getRiderByID(riderID).setDistance(distanceSet);
         if (getRiderByID(riderID).getDistance() == 0) {

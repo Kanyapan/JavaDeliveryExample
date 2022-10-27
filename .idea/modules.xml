@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Deleive.iml" filepath="$PROJECT_DIR$/Deleive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/delivery.iml" filepath="$PROJECT_DIR$/delivery.iml" />
     </modules>
   </component>
 </project>

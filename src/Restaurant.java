@@ -6,6 +6,16 @@ public class Restaurant {
     public ArrayList<Cuisine> cuisinesOrdered = new ArrayList<Cuisine>();
     public ArrayList<Rider> ridersWhoPick = new ArrayList<Rider>();
     Scanner scan = new Scanner(System.in);
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private String name;
     private Address address;
 
@@ -24,7 +34,8 @@ public class Restaurant {
 
     }
 
-    public Restaurant(String name, Address address) {
+    public Restaurant(int id ,String name, Address address) {
+        this.id=id;
         this.name = name;
         this.address = address;
         this.status="";
@@ -67,7 +78,7 @@ public class Restaurant {
         if (getRestaurantByIndex(restaurantID).cuisinesOrdered.size() != 0) {
             System.out.print("Select you food :");
             int cuisineSelect = scan.nextInt();
-            System.out.print("Confirm? :");
+            System.out.print("Confirm?y/n :");
             String confirm = scan.next();
             if (confirm.equals("y")) {
                 getRestaurantByIndex(restaurantID).ridersWhoPick.get(0).cuisinesReadyToPickup.add(getRestaurantByIndex(restaurantID).cuisinesOrdered.get(cuisineSelect - 1));
