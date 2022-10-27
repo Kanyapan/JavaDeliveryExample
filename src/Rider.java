@@ -30,9 +30,11 @@ public class Rider {
     private int state;
     private int distance;
     private Repository repository;
+
     public Rider() {
 
     }
+
     public Rider(int id, String name, Address address) {
         this.name = name;
         this.id = id;

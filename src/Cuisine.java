@@ -1,4 +1,5 @@
 public class Cuisine {
+    Restaurant restaurant = new Restaurant();
     private String food;
     private int price;
 
@@ -6,7 +7,7 @@ public class Cuisine {
         this.food = food;
         this.price = price;
     }
-    Restaurant restaurant = new Restaurant();
+
     public String getFood() {
         return food;
     }
@@ -24,7 +25,7 @@ public class Cuisine {
     }
 
     public Cuisine getCuisineByIndex(int index) {
-        return restaurant.cuisines.get(index-1);
+        return restaurant.cuisines.get(index - 1);
 
     }
 

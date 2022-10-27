@@ -1,4 +1,3 @@
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +5,7 @@ public class Main {
     static Customer customer = new Customer();
     static Rider rider = new Rider();
 
-    static Restaurant restaurant=new Restaurant();
+    static Restaurant restaurant = new Restaurant();
     static Scanner scan = new Scanner(System.in);
     static int menuSelect;
 
@@ -25,7 +24,6 @@ public class Main {
             }
         } while (menuSelect > 0);
     }
-
 
 
     public static void mainMenu() {

@@ -6,6 +6,23 @@ public class Restaurant {
     public ArrayList<Cuisine> cuisinesOrdered = new ArrayList<Cuisine>();
     public ArrayList<Rider> ridersWhoPick = new ArrayList<Rider>();
     Scanner scan = new Scanner(System.in);
+    private int id;
+    private String name;
+    private Address address;
+    private String status;
+    private Repository repository = new Repository();
+
+    public Restaurant() {
+
+    }
+
+    public Restaurant(int id, String name, Address address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.status = "";
+
+    }
 
     public int getId() {
         return id;
@@ -15,31 +32,12 @@ public class Restaurant {
         this.id = id;
     }
 
-    private int id;
-    private String name;
-    private Address address;
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    private String status;
-    private Repository repository = new Repository();
-
-    public Restaurant() {
-
-    }
-
-    public Restaurant(int id ,String name, Address address) {
-        this.id=id;
-        this.name = name;
-        this.address = address;
-        this.status="";
-
     }
 
     public Address getAddress() {
@@ -97,7 +95,7 @@ public class Restaurant {
         int i = 1;
         for (Restaurant restaurant : repository.restaurants) {
 
-            System.out.println(i + ". " + restaurant.getName() + ":" + restaurant.getAddress().getName()+" "+restaurant.getStatus());
+            System.out.println(i + ". " + restaurant.getName() + ":" + restaurant.getAddress().getName() + " " + restaurant.getStatus());
             i++;
         }
     }
