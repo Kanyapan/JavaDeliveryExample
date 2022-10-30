@@ -1,3 +1,4 @@
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
@@ -10,10 +11,11 @@ public class Main {
     static int menuSelect;
 
     public static void main(String[] args) {
+        Connection c =repository.connectDB();
 
-        repository.initialCustomer();
-        repository.initialRider();
-        repository.initialRestaurant();
+        repository.initialCustomer(c);
+        repository.initialRider(c);
+        repository.initialRestaurant(c);
 
         do {
             mainMenu();

@@ -22,13 +22,12 @@ public class Repository {
     }
 
 
-    public void initialCustomer() {
+    public void initialCustomer(Connection conn) {
         String QUERYAddress = "SELECT name, locationX, locationY FROM Address";
         String QUERYCustomer = "SELECT id , name FROM Customer";
 
         // Open a connection
         try {
-            Connection conn = connectDB();
             Statement stmtAddress = conn.createStatement();
             Statement stmtCustomer = conn.createStatement();
             ResultSet rsAddress = stmtAddress.executeQuery(QUERYAddress);
@@ -46,11 +45,10 @@ public class Repository {
 
     }
 
-    public void initialRider() {
+    public void initialRider(Connection conn) {
         String QUERY = "SELECT id, name FROM Rider";
         // Open a connection
         try {
-            Connection conn = connectDB();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(QUERY);
             while (rs.next()) {
@@ -67,14 +65,13 @@ public class Repository {
 
     }
 
-    public void initialRestaurant() {
+    public void initialRestaurant(Connection conn) {
 
 
         // Open a connection
         try {
             String QUERYRestaurantAddress = "SELECT Address.name,locationX,locationY FROM Address INNER JOIN Restaurant ON Address.name=Restaurant.address";
             String QUERYRestaurant = "SELECT id,name FROM Restaurant";
-            Connection conn = connectDB();
             Statement stmtRestaurant = conn.createStatement();
             Statement stmtRestaurantAddress = conn.createStatement();
             ResultSet rsRestaurantAddress = stmtRestaurantAddress.executeQuery(QUERYRestaurantAddress);
